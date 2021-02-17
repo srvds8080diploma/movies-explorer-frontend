@@ -5,14 +5,14 @@ const NavTab = () => (
   <nav className="navtab">
     <ul className="navtab__list">
       {[
-        { value: 'О проекте', href: '#1' },
+        { value: 'О проекте', href: '#About' },
         { value: 'Технологии', href: '#2' },
         { value: 'Обо мне', href: '#3' },
         { value: 'Портфолио', href: '#4' },
-      ].map((value) => (
+      ].map(({ value, href }) => (
         <li key={value} className="navtab__list-item">
-          <a href={value.href} className="navtab__list-link">
-            { value.value }
+          <a href={href} className="navtab__list-link">
+            { value }
           </a>
         </li>
       ))}
