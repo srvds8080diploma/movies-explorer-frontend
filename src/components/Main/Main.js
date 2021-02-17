@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import Promo from '../Promo/Promo';
 import ProjectSection from '../ProjectSection/ProjectSection';
 import AboutProject from '../AboutProject/AboutProject';
+import Progressbar from '../Progressbar/Progressbar';
 
 const Main = () => (
   <div className="main">
@@ -11,6 +12,7 @@ const Main = () => (
     <Promo />
     <ProjectSection id="About" title="О проекте">
       <AboutProject />
+      <Progressbar />
     </ProjectSection>
   </div>
 );
