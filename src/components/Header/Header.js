@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Header.css';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 
-const Header = ({ valueButton = 'Войти', valueTitle = 'Регистрация' }) => (
+const Header = ({ valueButton, valueTitle }) => (
   <header className="header">
     <div className="header__content">
       <Logo id="1" className="header__logo" />
@@ -15,9 +15,13 @@ const Header = ({ valueButton = 'Войти', valueTitle = 'Регистраци
   </header>
 );
 
+Header.defaultProps = {
+  valueButton: 'Войти',
+  valueTitle: 'Регистрация',
+};
 Header.propTypes = {
-  valueButton: PropTypes.string.isRequired,
-  valueTitle: PropTypes.string.isRequired,
+  valueButton: PropTypes.string,
+  valueTitle: PropTypes.string,
 };
 
 export default Header;
