@@ -1,0 +1,18 @@
+.tabs-stack {
+  width: 100%;
+  max-width: 690px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  grid-gap: 10px;
+  margin-bottom: 100px;
+}
+.tabs-stack__tab {
+  width: 90px;
+  height: 60px;
+  background-color: #303030;
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 4.2;
+}
