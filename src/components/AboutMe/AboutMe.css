@@ -1,0 +1,12 @@
+.about-me {
+  width: 100%;
+  /*max-width: 690px;*/
+  /*display: grid;*/
+  /*grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));*/
+  /*grid-gap: 10px;*/
+  /*margin-bottom: 100px;*/
+}
+.about-me__image {
+  /*width: 600px;*/
+  /*height: auto;*/
+}
