@@ -1,16 +1,15 @@
 import React from 'react';
 import './Main.css';
-import Header from '../Header/Header';
 import Promo from '../Promo/Promo';
 import ProjectSection from '../ProjectSection/ProjectSection';
 import AboutProject from '../AboutProject/AboutProject';
 import Progressbar from '../Progressbar/Progressbar';
 import Stack from '../Stack/Stack';
 import AboutMe from '../AboutMe/AboutMe';
+import Portfolio from '../Portfolio/Portfolio';
 
 const Main = () => (
   <div className="main">
-    <Header />
     <Promo />
     <ProjectSection id="about" title="О проекте">
       <AboutProject />
@@ -21,6 +20,7 @@ const Main = () => (
     </ProjectSection>
     <ProjectSection id="me" title="Студент">
       <AboutMe />
+      <Portfolio />
     </ProjectSection>
   </div>
 );
