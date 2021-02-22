@@ -9,6 +9,7 @@
 }
 .Stack__title {
   margin: 90px 0 26px;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 50px;
@@ -17,6 +18,7 @@
 .Stack__description {
   max-width: 460px;
   margin: 0 0 100px;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

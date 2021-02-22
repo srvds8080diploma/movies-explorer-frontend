@@ -8,6 +8,7 @@
 .progressbar__backend {
   color: #000000;
   background-color: #5594FE;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -27,6 +28,7 @@
 .progressbar__frontend {
   color: #ffffff;
   background-color: #303030;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
