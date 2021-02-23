@@ -1,0 +1,23 @@
+.footer {
+  width: calc(100% - 140px);
+  background-color: #272727;
+  box-sizing: border-box;
+  min-height: 172px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.footer__title {
+  margin: 0;
+}
+.footer__content-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
