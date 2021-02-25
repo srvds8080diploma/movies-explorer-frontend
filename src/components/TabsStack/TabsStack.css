@@ -7,8 +7,6 @@
   margin-bottom: 100px;
 }
 .tabs-stack__tab {
-  width: 90px;
-  height: 60px;
   background-color: #303030;
   border-radius: 10px;
   font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
@@ -16,4 +14,18 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 4.2;
+}
+@media screen and (max-width: 1023px) {
+  .tabs-stack {
+    margin-bottom: 90px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .tabs-stack {
+    margin-bottom: 70px;
+  }
+  .tabs-stack__tab {
+    font-size: 12px;
+    line-height: 4.75;
+  }
 }
