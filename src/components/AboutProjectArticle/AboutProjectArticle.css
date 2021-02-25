@@ -4,7 +4,7 @@
   height: auto;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  grid-gap: 28px;
+  grid-gap: 26px;
 }
 .about-project-article__title {
   margin: 0;
@@ -16,4 +16,33 @@
 }
 .about-project-article__desription {
   margin: 0;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.2;
+}
+@media screen and (max-width: 1279px) {
+  .about-project-article__desription {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .about-project-article {
+    grid-gap: 22px;
+  }
+  .about-project-article__desription {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .about-project-article__desription {
+    font-size: 11px;
+  }
+  .about-project-article {
+    grid-gap: 16px;
+  }
+  .about-project-article__title {
+    font-size: 18px;
+  }
 }

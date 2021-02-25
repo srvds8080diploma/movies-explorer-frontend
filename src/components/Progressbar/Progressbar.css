@@ -3,7 +3,7 @@
   height: 36px;
   margin-bottom: 141px;
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: minmax(100px, 1fr) 4fr;
 }
 .progressbar__backend {
   color: #000000;
@@ -44,4 +44,23 @@
   top: 37px;
   align-self: center;
   justify-self: center;
+}
+@media screen and (max-width: 1279px) {
+  .progressbar {
+    margin-bottom: 121px;
+  }
+}
+@media screen and (max-width: 769px) {
+  .progressbar {
+    height: 35px;
+    margin-bottom: 93px;
+  }
+  .progressbar__backend {
+    font-size: 11px;
+    line-height: 3.18;
+  }
+  .progressbar__frontend {
+    font-size: 11px;
+    line-height: 3.18;
+  }
 }

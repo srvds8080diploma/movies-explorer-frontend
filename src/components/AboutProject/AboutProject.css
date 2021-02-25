@@ -6,3 +6,15 @@
   grid-gap: 30px;
   margin: 70px 0 110px;
 }
+
+@media screen and (max-width: 1023px) {
+  .about-project {
+    margin: 70px 0 93px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .about-project {
+    grid-gap: 56px;
+    margin: 60px 0 60px;
+  }
+}
