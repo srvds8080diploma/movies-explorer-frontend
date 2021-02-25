@@ -36,6 +36,9 @@
   }
 }
 @media screen and (max-width: 1023px) {
+  .promo {
+    background-image: none;
+  }
   .promo__title {
     font-size: 34px;
     max-width: 524px;
