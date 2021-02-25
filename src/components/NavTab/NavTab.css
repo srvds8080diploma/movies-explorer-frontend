@@ -22,13 +22,43 @@
   font-size: 24px;
   line-height: 2.5;
   text-decoration: none;
+  letter-spacing: -0.04em;
   background-color: rgba(48, 48, 48, 0.35);
   color: #ffffff;
 }
 .navtab__list-item {
-  width: 238px;
+  width: calc(100% - 79.1%);
   height: 64px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+
+@media screen and (max-width: 1279px) {
+  .navtab__list-link {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .navtab__list-link {
+    font-size: 16px;
+    line-height: 3.25;
+  }
+  .navtab__list-item {
+    width: calc(100% - 77.8%);
+    height: 52px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .navtab__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+  .navtab__list-item {
+    width: 100%;
+    min-width: 170px;
+    height: 52px;
+  }
+}
+

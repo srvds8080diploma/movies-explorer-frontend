@@ -1,7 +1,7 @@
 .project-section {
   width: 100%;
   height: auto;
-  padding-top: 110px;
+  padding-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,4 +12,12 @@
 }
 .project-section_backgruond-color_light {
   background-color: #272727;
+}
+@media screen and (max-width: 768px) {
+  .project-section {
+    padding-top: 90px;
+  }
+  .project-section__content {
+    width: calc(100% - 100px);
+  }
 }
