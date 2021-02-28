@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="page">
       <Header />
-      <Main />
+      {false && <Main />}
       <Footer />
     </div>
   );
