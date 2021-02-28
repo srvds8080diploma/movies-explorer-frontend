@@ -1,0 +1,59 @@
+.menu-profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+  align-items: center;
+}
+.menu-profile__title {
+  color: #ffffff;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3;
+  outline: none;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}
+.menu-profile__button {
+  width: 76px;
+  height: 32px;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3;
+  background-color: #5594FE;
+  outline: none;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+}
+
+@media screen and (max-width: 1279px) {
+
+}
+@media screen and (max-width: 1023px) {
+  .menu-profile {
+    grid-gap: 14px;
+  }
+
+  .menu-profile__button {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .menu-profile {
+    grid-gap: 14px;
+  }
+  .menu-profile__title {
+    font-size: 10px;
+  }
+  .menu-profile__button {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+  }
+}
