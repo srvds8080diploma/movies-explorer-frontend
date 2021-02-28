@@ -1,0 +1,58 @@
+.menu-movies {
+  width: 100%;
+  max-width: 212px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: auto;
+  margin-left: 44px;
+}
+.menu-movies__collection {
+  color: #ffffff;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.3;
+  text-decoration: none;
+}
+.menu-movies__saved-collection {
+  color: #ffffff;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 1.3;
+  text-decoration: none;
+}
+.menu-movies__account {
+  width: 100%;
+  max-width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-movies__account-link {
+  color: #ffffff;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.menu-movies__account-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background-color: #313131;
+  background-image: url('../../images/account__image.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  outline: none;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
