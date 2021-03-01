@@ -11,12 +11,6 @@ const MenuMovies = () => (
         Сохраненные фильмы
       </a>
     </div>
-    <div className="menu-movies__account">
-      <a href="https://github.com" className="menu-movies__account-link">
-        Аккаунт
-      </a>
-      <button type="button" className="menu-movies__account-image" />
-    </div>
   </>
 );
 
