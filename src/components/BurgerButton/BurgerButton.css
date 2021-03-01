@@ -1,5 +1,5 @@
 .burger-button {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -11,7 +11,12 @@
   margin: 0;
   border: none;
   cursor: pointer;
-  position: relative;
+  right: 30px;
+  z-index: 10;
+  position: absolute;
+}
+.burger-button_active {
+  position: fixed;
 }
 .burger-button__base-line {
   display: inline-block;
@@ -43,4 +48,14 @@
 }
 .burger-button__base-line_active::after {
   transform: translate(0, 2px) rotate(45deg);
+}
+@media screen and (max-width: 1024px) {
+  .burger-button {
+    display: flex;
+  }
+}
+@media screen and (max-width: 767px) {
+  .burger-button {
+    right: 23px;
+  }
 }
