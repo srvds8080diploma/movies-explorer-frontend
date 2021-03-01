@@ -1,28 +1,18 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './Header.css';
-import MenuProfile from '../MenuProfile/MenuProfile';
-import Navigation from '../Navigation/Navigation';
 
-const Header = () => (
+const Header = ({ children }) => (
   <header className="header">
     <div className="header__content">
       <button type="button" className="header__logo" />
-      {true && <Navigation /> }
-      {false && <MenuProfile />}
+      {children}
     </div>
   </header>
 );
 
-// Header.defaultProps = {
-//   valueButton: 'Войти',
-//   valueTitle: 'Регистрация',
-//   isLogged: true,
-// };
-// Header.propTypes = {
-//   isLogged: PropTypes.bool,
-//   valueButton: PropTypes.string,
-//   valueTitle: PropTypes.string,
-// };
+Header.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Header;
