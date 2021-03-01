@@ -1,31 +1,16 @@
-import React, { useState } from 'react';
-import BurgerButton from '../BurgerButton/BurgerButton';
-import MenuBurger from '../MenuBurger/MenuBurger';
+import React from 'react';
 import MenuMovies from '../MenuMovies/MenuMovies';
+import Account from '../Account/Account';
 import './Navigation.css';
 
-const Navigation = () => {
-  const [classBurgerValue, setClassburger] = useState(false);
-  const [classMenuBurgerValue, setClassMenuBurger] = useState(false);
-  const handleClickButtonBurger = () => {
-    setClassburger(!classBurgerValue);
-    setClassMenuBurger(!classMenuBurgerValue);
-  };
-
-  return (
-    <div className="navigation">
-      <div className="navigation__menu-classic">
-        <MenuMovies />
-      </div>
-      <div className="navigation__menu-burger">
-        <MenuBurger classMenuBurgerValue={classMenuBurgerValue} />
-        <BurgerButton
-          handleClickButtonBurger={handleClickButtonBurger}
-          classBurgerValue={classBurgerValue}
-        />
-      </div>
+const Navigation = () => (
+  <div className="navigation">
+    <div className="navigation__menu-classic">
+      <MenuMovies />
+      <Account />
     </div>
-  );
-};
+
+  </div>
+);
 
 export default Navigation;
