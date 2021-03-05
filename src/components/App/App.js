@@ -10,6 +10,7 @@ import MenuBurger from '../MenuBurger/MenuBurger';
 import MenuProfile from '../MenuProfile/MenuProfile';
 import Navigation from '../Navigation/Navigation';
 import BurgerButton from '../BurgerButton/BurgerButton';
+import Movies from '../Movies/Movies';
 
 const App = () => {
   const [valueButton, setValueButton] = useState(false);
@@ -34,7 +35,7 @@ const App = () => {
             classBurgerValue={valueButton}
           />
         </Header>
-        {true && <Main />}
+        {false ? <Main /> : <Movies />}
         <Footer />
       </div>
     </>
