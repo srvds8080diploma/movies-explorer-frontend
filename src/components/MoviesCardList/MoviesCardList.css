@@ -1,13 +1,17 @@
 .movies-list {
-  margin-top: 90px;
+  margin: 90px 0 80px;
+}
+.movies-list__content {
+  margin: 0;
   border-top: 1px solid #AAAAAA33;
-  padding: 80px 0;
+  padding: 80px 0 60px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(274px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(274px, max-content));
   grid-column-gap: 24px;
   grid-row-gap: 37px;
   justify-items: center;
   align-items: center;
+  list-style-type: none;
 }
 @media screen and (max-width: 1024px) {
   .movies-list {

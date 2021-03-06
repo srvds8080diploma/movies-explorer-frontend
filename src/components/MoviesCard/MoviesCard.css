@@ -61,7 +61,7 @@
   background-position: center;
 }
 .movies-card__button-like_checked {
-  background-image: url('../../images/icon-full.png');
+  background-image: url('../../images/icon-full.svg');
 }
 .movies-card__duration-hour {
   margin-right: 5px;
