@@ -28,7 +28,7 @@
   display: none;
 }
 .search-form__button {
-  width: 100px;
+  min-width: 100px;
   height: 52px;
   color: #ffffff;
   font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
