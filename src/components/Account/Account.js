@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Account.css';
 
 const Account = () => (
   <div className="account">
-    <a href="https://github.com" className="account__link">
+    <Link to="/profile" className="account__link">
       Аккаунт
-    </a>
-    <button type="button" className="account__image" />
+    </Link>
+    <Link to="/profile" className="account__image" />
   </div>
 );
 

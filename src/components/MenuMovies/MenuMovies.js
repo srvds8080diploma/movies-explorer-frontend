@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './MenuMovies.css';
 
 const MenuMovies = () => (
   <>
     <div className="menu-movies">
-      <a href="https://github.com" className="menu-movies__collection">
+      <Link to="/movies" className="menu-movies__collection">
         Фильмы
-      </a>
-      <a href="https://github.com" className="menu-movies__saved-collection">
+      </Link>
+      <Link to="/saved-movies" className="menu-movies__saved-collection">
         Сохраненные фильмы
-      </a>
+      </Link>
     </div>
   </>
 );

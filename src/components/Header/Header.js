@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Header.css';
 
 const Header = ({ children }) => (
   <header className="header">
     <div className="header__content">
-      <button type="button" className="header__logo" />
+      <Link to="/" className="header__logo" />
       {children}
     </div>
   </header>
