@@ -1,16 +1,17 @@
 import React from 'react';
-import MenuMovies from '../MenuMovies/MenuMovies';
-import Account from '../Account/Account';
+import PropTypes from 'prop-types';
 import './Navigation.css';
 
-const Navigation = () => (
+const Navigation = ({ children }) => (
   <div className="navigation">
     <div className="navigation__menu-classic">
-      <MenuMovies />
-      <Account />
+      {children}
     </div>
 
   </div>
 );
 
+Navigation.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 export default Navigation;
