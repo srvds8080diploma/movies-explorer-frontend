@@ -1,6 +1,10 @@
+body, .root, .page  {
+  height: 100%;
+  min-height: 100vh;
+}
 .page {
-  width: 100%;
-  height: auto;
+  display: flex;
+  flex-direction: column;
   font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
   color: #fff;
   background-color: #202020;
