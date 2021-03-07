@@ -6,6 +6,7 @@
   top: 0;
   left: 0;
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
