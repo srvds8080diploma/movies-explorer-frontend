@@ -20,20 +20,35 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
+import SavedMovies from '../SavedMovies/SavedMovies';
 
 const App = ({ location, history }) => {
   const [valueButton, setValueButton] = useState(false);
   const [valueMenuBurger, setValueMenuBurger] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleClickButtonBurger = () => {
     setValueButton(!valueButton);
     setValueMenuBurger(!valueMenuBurger);
   };
-  // eslint-disable-next-line no-unused-vars
   const handleLogin = () => {
-    setIsLoggedIn(true);
+    setIsLoggedIn(!isLoggedIn);
+    history.push('/movies');
   };
+  const ArrayLinks = [
+    'https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg',
+    'https://api.nomoreparties.co/uploads/taqwacore2_2f487d2e74.jpeg',
+    'https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg',
+    'https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg',
+    'https://api.nomoreparties.co/uploads/all_tommoros_parties_33a125248d.jpeg',
+    'https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg',
+    'https://api.nomoreparties.co/uploads/posters_came_from_the_walls_2009_001_posters_180fe1a19f.jpeg',
+    'https://api.nomoreparties.co/uploads/all_tommoros_parties_33a125248d.jpeg',
+    'https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg',
+    'https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg',
+    'https://api.nomoreparties.co/uploads/taqwacore2_2f487d2e74.jpeg',
+    'https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg',
+  ];
 
   return (
     <>
@@ -66,13 +81,13 @@ const App = ({ location, history }) => {
             <Register />
           </Route>
           <Route path="/signin">
-            <Login />
+            <Login handleAction={handleLogin} />
           </Route>
           <Route path="/movies">
-            <Movies />
+            <Movies arrayFilms={ArrayLinks} />
           </Route>
           <Route path="/saved-movies">
-            <Movies />
+            <SavedMovies arrayFilms={ArrayLinks} />
           </Route>
           <Route path="/*">
             <NotFound history={history} />
@@ -89,6 +104,3 @@ App.propTypes = {
   history: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 export default withRouter(App);
-
-// TODO сделать saved-movies
-// TODO сделать registration
