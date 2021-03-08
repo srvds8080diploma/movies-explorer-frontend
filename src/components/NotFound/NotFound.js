@@ -4,7 +4,6 @@ import './NotFound.css';
 
 const NotFound = ({ history }) => {
   const goBack = function () {
-    console.log('history.goBack()');
     history.goBack();
   };
 
