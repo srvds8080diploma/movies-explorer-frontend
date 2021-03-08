@@ -83,7 +83,7 @@
   font-size: 13px;
   line-height: 16px;
 }
-.profile__button_type_title {
+.profile__button_type_edit {
   margin-top: 220px;
   margin-bottom: 16px;
   font-weight: normal;
@@ -98,7 +98,7 @@
   .profile__title {
     margin: 0 0 96px;
   }
-  .profile__button_type_title {
+  .profile__button_type_edit {
     margin-top: 210px;
   }
 }
@@ -109,7 +109,7 @@
   .profile__title {
     margin: 0 0 80px;
   }
-  .profile__button_type_title {
+  .profile__button_type_edit {
     margin-top: 379px;
   }
   .profile__input,

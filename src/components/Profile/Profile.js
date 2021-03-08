@@ -15,7 +15,7 @@ const Profile = ({ name, titleSubmit, titleLogoutButton }) => (
         Email
         <input id="email" maxLength="50" type="email  " className="profile__input profile__input_type_email" placeholder="example@email.com" />
       </label>
-      <button type="submit" className="profile__button profile__button_type_title">{ titleSubmit }</button>
+      <button type="submit" className="profile__button profile__button_type_edit">{ titleSubmit }</button>
       <Link to="/sign-in" className="profile__button profile__button_type_logout">{ titleLogoutButton }</Link>
     </form>
   </div>
