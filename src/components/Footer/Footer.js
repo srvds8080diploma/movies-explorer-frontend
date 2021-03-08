@@ -5,7 +5,9 @@ import './Footer.css';
 const Footer = ({ location }) => {
   const [invisible, setInvisible] = useState(false);
   useEffect(() => {
-    if (location.pathname === '/profile') {
+    if (location.pathname === '/profile'
+      || location.pathname === '/signup'
+      || location.pathname === '/signin') {
       setInvisible(true);
       return;
     }
