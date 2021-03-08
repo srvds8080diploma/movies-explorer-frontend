@@ -15,6 +15,7 @@
   padding: 0;
   border: 0;
   background-color: transparent;
+  cursor: pointer;
 }
 .menu-profile__button {
   width: 76px;
@@ -28,6 +29,7 @@
   padding: 0;
   border: 0;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1279px) {
