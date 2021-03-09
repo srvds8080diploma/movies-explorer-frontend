@@ -53,6 +53,10 @@
   color: #ffffff;
   text-decoration: none;
 }
+.footer__link:hover {
+  color: #4285F4;
+  transition: 0.2s;
+}
 .footer__copyright {
   font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
   font-style: normal;

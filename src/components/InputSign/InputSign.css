@@ -9,6 +9,7 @@
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
 .register__input-label-description {
   color: #8b8b8b;
   font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
@@ -33,6 +34,11 @@
   font-weight: normal;
   font-size: 13px;
   line-height: 1.2;
+  transition: 0.6s;
+}
+.register__input:focus {
+  transition: 0.4s;
+  box-shadow: 0 0 25px 0 rgba(66, 133, 244, 0.2) inset ;
 }
 .register__input_invalid {
   color: #4285F4;

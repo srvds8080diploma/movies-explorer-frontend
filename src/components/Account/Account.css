@@ -15,6 +15,10 @@
   line-height: 1.2;
   text-decoration: none;
 }
+.account__link:hover {
+  color: #4285F4;
+  transition: 0.2s;
+}
 .account__image {
   width: 30px;
   height: 30px;

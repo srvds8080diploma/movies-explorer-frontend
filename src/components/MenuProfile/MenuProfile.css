@@ -17,6 +17,10 @@
   background-color: transparent;
   cursor: pointer;
 }
+.menu-profile__title:hover {
+  color: #4285F4;
+  transition: 0.2s;
+}
 .menu-profile__button {
   width: 76px;
   height: 32px;

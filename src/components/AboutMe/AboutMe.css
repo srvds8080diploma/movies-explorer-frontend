@@ -49,6 +49,10 @@
   line-height: 1.2;
   color: #ffffff;
 }
+.about-me__links-item:hover {
+  color: #4285F4;
+  transition: 0.2s;
+}
 .about-me__image {
   object-fit: contain;
 }
