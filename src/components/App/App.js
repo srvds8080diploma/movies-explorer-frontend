@@ -46,15 +46,17 @@ const App = ({ location, history }) => {
           {isLoggedIn
             ? <MenuProfile />
             : (
-              <Navigation>
-                <MenuMovies />
-                <Account />
-              </Navigation>
+              <>
+                <Navigation>
+                  <MenuMovies />
+                  <Account />
+                </Navigation>
+                <BurgerButton
+                  handleClickButtonBurger={handleClickButtonBurger}
+                  classBurgerValue={valueButton}
+                />
+              </>
             )}
-          <BurgerButton
-            handleClickButtonBurger={handleClickButtonBurger}
-            classBurgerValue={valueButton}
-          />
         </Header>
         <Switch>
           <Route exact path="/">
