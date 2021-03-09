@@ -4,7 +4,7 @@
 }
 .movies__content {
   width: calc(100% - 140px);
-  max-width: 1280px;
+  max-width: 1160px;
   margin: 0 auto;
   padding: 144px 0 0;
 }
