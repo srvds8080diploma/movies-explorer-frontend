@@ -21,13 +21,13 @@ const Footer = ({ location }) => {
           <span className="footer__copyright">&copy; 2021</span>
           <ul className="footer__list-links">
             <li className="footer__list-links_item">
-              <a className="footer__link" target="_blanc" href="https://github.com/srvds8080">Яндекс.Практикум</a>
+              <a className="footer__link" target="_blank" rel="noreferrer" href="https://github.com/srvds8080">Яндекс.Практикум</a>
             </li>
             <li className="footer__list-links_item">
-              <a className="footer__link" target="_blanc" href="https://github.com/srvds8080">Github</a>
+              <a className="footer__link" target="_blank" rel="noreferrer" href="https://github.com/srvds8080">Github</a>
             </li>
             <li className="footer__list-links_item">
-              <a className="footer__link" target="_blanc" href="https://github.com/srvds8080">Facebook</a>
+              <a className="footer__link" target="_blank" rel="noreferrer" href="https://github.com/srvds8080">Facebook</a>
             </li>
           </ul>
         </div>

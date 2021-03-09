@@ -5,11 +5,11 @@ import './MenuProfile.css';
 
 const MenuProfile = ({ valueButton, valueTitle }) => (
   <div className="menu-profile">
-    <Link to="/signup">
-      <button type="button" className="menu-profile__title">{valueTitle}</button>
+    <Link to="/signup" className="menu-profile__title">
+      {valueTitle}
     </Link>
-    <Link to="/signin">
-      <button type="button" className="menu-profile__button">{valueButton}</button>
+    <Link to="/signin" className="menu-profile__button">
+      {valueButton}
     </Link>
   </div>
 );
