@@ -17,7 +17,16 @@ const NotFound = ({ history }) => {
   );
 };
 NotFound.propTypes = {
-  history: PropTypes.objectOf(PropTypes.string).isRequired,
+  history: PropTypes.shape({
+    action: PropTypes.string.isRequired,
+    block: PropTypes.func.isRequired,
+    length: PropTypes.number.isRequired,
+    listen: PropTypes.func.isRequired,
+    location: PropTypes.objectOf(PropTypes.string).isRequired,
+    push: PropTypes.func.isRequired,
+    replace: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default NotFound;

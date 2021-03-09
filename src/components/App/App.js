@@ -21,12 +21,12 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import ArrayLinks from '../../utils/constants';
 
 const App = ({ location, history }) => {
   const [valueButton, setValueButton] = useState(false);
   const [valueMenuBurger, setValueMenuBurger] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-
   const handleClickButtonBurger = () => {
     setValueButton(!valueButton);
     setValueMenuBurger(!valueMenuBurger);
@@ -35,20 +35,6 @@ const App = ({ location, history }) => {
     setIsLoggedIn(!isLoggedIn);
     history.push('/movies');
   };
-  const ArrayLinks = [
-    'https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg',
-    'https://api.nomoreparties.co/uploads/taqwacore2_2f487d2e74.jpeg',
-    'https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg',
-    'https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg',
-    'https://api.nomoreparties.co/uploads/all_tommoros_parties_33a125248d.jpeg',
-    'https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg',
-    'https://api.nomoreparties.co/uploads/posters_came_from_the_walls_2009_001_posters_180fe1a19f.jpeg',
-    'https://api.nomoreparties.co/uploads/all_tommoros_parties_33a125248d.jpeg',
-    'https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg',
-    'https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg',
-    'https://api.nomoreparties.co/uploads/taqwacore2_2f487d2e74.jpeg',
-    'https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg',
-  ];
 
   return (
     <>
@@ -101,6 +87,14 @@ const App = ({ location, history }) => {
 
 App.propTypes = {
   location: PropTypes.objectOf(PropTypes.string).isRequired,
-  history: PropTypes.objectOf(PropTypes.string).isRequired,
+  history: PropTypes.shape({
+    action: PropTypes.string.isRequired,
+    block: PropTypes.func.isRequired,
+    length: PropTypes.number.isRequired,
+    listen: PropTypes.func.isRequired,
+    location: PropTypes.objectOf(PropTypes.string).isRequired,
+    push: PropTypes.func.isRequired,
+    replace: PropTypes.func.isRequired,
+  }).isRequired,
 };
 export default withRouter(App);
