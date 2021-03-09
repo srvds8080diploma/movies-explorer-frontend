@@ -5,8 +5,8 @@ import './SearchForm.css';
 const SearchForm = () => (
   <form noValidate className="search-form">
     <input
-      type="search"
       required
+      type="search"
       placeholder="Фильм"
       maxLength="100"
       className="search-form__input"
