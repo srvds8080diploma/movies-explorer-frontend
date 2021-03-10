@@ -61,6 +61,7 @@
     width: 22px;
     height: 22px;
   }
+  .burger-button__base-line,
   .burger-button__base-line::after,
   .burger-button__base-line::before {
     height: 2.5px;
