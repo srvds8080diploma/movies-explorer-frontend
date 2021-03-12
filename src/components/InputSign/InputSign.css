@@ -40,9 +40,6 @@
   transition: 0.4s;
   box-shadow: 0 0 25px 0 rgba(66, 133, 244, 0.2) inset ;
 }
-.register__input_invalid {
-  color: #4285F4;
-}
 .register__input::placeholder {
   color: #ffffff;
   font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
