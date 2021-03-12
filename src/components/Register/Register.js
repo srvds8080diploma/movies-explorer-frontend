@@ -10,14 +10,14 @@ const Register = ({ title, titleSubmit, onSubmit }) => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   const [{
-    name, isNameValid, email, isEmailValid, password, isPasswordValid, errors,
+    name, nameValid, email, emailValid, password, passwordValid, errors,
   }, setFormValues] = useState({
     name: '',
-    isNameValid: false,
+    nameValid: false,
     email: '',
-    isEmailValid: false,
+    emailValid: false,
     password: '',
-    isPasswordValid: false,
+    passwordValid: false,
     errors: {
       name: '',
       email: '',
@@ -35,29 +35,13 @@ const Register = ({ title, titleSubmit, onSubmit }) => {
 
   const handleOnChange = (e) => {
     switch (e.target.name) {
-      case 'name':
+      case e.target.name:
         setFormValues((prevState) => ({
           ...prevState,
-          name: e.target.value,
-          isNameValid: e.target.validity.valid,
+          [e.target.name]: e.target.value,
+          [`${e.target.name}Valid`]: e.target.validity.valid,
         }));
-        errors.name = e.target.validationMessage;
-        break;
-      case 'email':
-        setFormValues((prevState) => ({
-          ...prevState,
-          email: e.target.value,
-          isEmailValid: e.target.validity.valid,
-        }));
-        errors.email = e.target.validationMessage;
-        break;
-      case 'password':
-        setFormValues((prevState) => ({
-          ...prevState,
-          password: e.target.value,
-          isPasswordValid: e.target.validity.valid,
-        }));
-        errors.password = e.target.validationMessage;
+        errors[e.target.name] = e.target.validationMessage;
         break;
       default:
         break;
@@ -76,7 +60,7 @@ const Register = ({ title, titleSubmit, onSubmit }) => {
             placeholder="Виталий"
             type="text"
             textError={errors.name}
-            isInvalid={!isNameValid}
+            isInvalid={!nameValid}
             value={name}
             onChange={handleOnChange}
           />
@@ -86,7 +70,7 @@ const Register = ({ title, titleSubmit, onSubmit }) => {
             placeholder="example@mail.com"
             type="email"
             textError={errors.email}
-            isInvalid={!isEmailValid}
+            isInvalid={!emailValid}
             value={email}
             onChange={handleOnChange}
           />
@@ -96,7 +80,7 @@ const Register = ({ title, titleSubmit, onSubmit }) => {
             placeholder="Пароль"
             type="password"
             textError={errors.password}
-            isInvalid={!isPasswordValid}
+            isInvalid={!passwordValid}
             value={password}
             onChange={handleOnChange}
           />
