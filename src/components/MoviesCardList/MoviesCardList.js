@@ -7,7 +7,9 @@ import './MoviesCardList.css';
 const MoviesCardList = ({ arrayFilms }) => (
   <div className="movies-list">
     <ul className="movies-list__content">
-      {arrayFilms.map((item) => (<MoviesCard key={item} link={item} />))}
+      {arrayFilms.map((item) => (
+        <MoviesCard key={item} link={item} />
+      ))}
     </ul>
     <ButtonStill title="Еще" />
   </div>
