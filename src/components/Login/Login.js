@@ -53,7 +53,7 @@ const Login = ({ title, titleSubmit, onSubmit }) => {
         <div className="login__input-wraper">
           <InputSign
             name="email"
-            lable="Имя"
+            lable="Email"
             placeholder="example@mail.com"
             type="email"
             value={email}
