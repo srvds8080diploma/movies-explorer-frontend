@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Profile.css';
+import userContext from '../../context/currentUser';
 
 const Profile = ({
   titleSubmit, titleLogoutButton, onSubmit, onLogout,
 }) => {
+  const user = useContext(userContext);
   const [isFormValid, setIsFormValid] = useState(false);
 
   const [{
     email, emailValid, name, nameValid, errors,
   }, setFormValues] = useState({
-    email: '',
+    email: user.email,
     emailValid: false,
-    name: '',
+    name: user.name,
     nameValid: false,
     errors: {
       name: '',
@@ -59,16 +61,16 @@ const Profile = ({
             minLength="2"
             type="text"
             className="profile__input profile__input_type_name"
-            placeholder="Виталий"
+            placeholder="Имя"
             value={name}
             onChange={handleOnChange}
           />
-          <span
-            className={`register__input-error ${nameValid && 'register__input-error_active'}`}
-          >
-            {errors.name}
-          </span>
         </label>
+        <span
+          className={`profile__input-error ${!nameValid && 'profile__input-error_active'}`}
+        >
+          {errors.name}
+        </span>
         <label
           htmlFor="email"
           className="profile__input-label"
@@ -78,19 +80,19 @@ const Profile = ({
             name="email"
             type="email"
             className="profile__input profile__input_type_name"
-            placeholder="Виталий"
+            placeholder="email"
             value={email}
             onChange={handleOnChange}
           />
-          <span
-            className={`register__input-error ${emailValid && 'register__input-error_active'}`}
-          >
-            {errors.email}
-          </span>
         </label>
+        <span
+          className={`profile__input-error ${!emailValid && 'profile__input-error_active'}`}
+        >
+          {errors.email}
+        </span>
         <button
           type="submit"
-          className="profile__button profile__button_type_edit"
+          className={`profile__button profile__button_type_edit ${!isFormValid && 'profile__button_type_invalid'}`}
         >
           {titleSubmit}
         </button>
