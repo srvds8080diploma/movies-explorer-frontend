@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './InputSign.css';
 
 const InputSign = ({
-  name, lable, placeholder, type, isInvalid, textError, value, onChange, required,
+  name, lable, placeholder, type, isInvalid, textError, value, onChange, required, min, max,
 }) => (
   <label htmlFor={name} className="register__input-label">
     <span
@@ -13,13 +13,14 @@ const InputSign = ({
     </span>
     <input
       name={name}
-      maxLength="50"
       type={type}
       className="register__input"
       placeholder={placeholder}
       value={value}
       onChange={onChange}
       required={required}
+      minLength={min}
+      maxLength={max}
     />
     <span
       className={`register__input-error ${isInvalid && 'register__input-error_active'}`}
@@ -38,6 +39,8 @@ InputSign.defaultProps = {
   textError: 'error',
   isInvalid: false,
   required: true,
+  min: null,
+  max: null,
 };
 
 InputSign.propTypes = {
@@ -50,6 +53,8 @@ InputSign.propTypes = {
   isInvalid: PropTypes.bool,
   required: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
+  min: PropTypes.number,
+  max: PropTypes.number,
 };
 
 export default InputSign;
