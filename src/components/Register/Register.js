@@ -51,7 +51,7 @@ const Register = ({ title, titleSubmit, onSubmit }) => {
   return (
     <section className="register">
       <form onSubmit={handleSubmit} noValidate className="register__form">
-        <Logo path="/signup" />
+        <Logo path="/" />
         <h4 className="register__title">{title}</h4>
         <div className="register__input-wraper">
           <InputSign
@@ -63,6 +63,8 @@ const Register = ({ title, titleSubmit, onSubmit }) => {
             isInvalid={!nameValid}
             value={name}
             onChange={handleOnChange}
+            min={2}
+            max={30}
           />
           <InputSign
             name="email"
