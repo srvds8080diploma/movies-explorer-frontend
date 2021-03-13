@@ -22,7 +22,7 @@ const MenuBurger = ({ classMenuBurgerValue, handleClick }) => {
             <Link onClick={handleClickLinck} to="saved-movies" className="menu-burger__list-link">Сохраненные фильмы</Link>
           </li>
           <li className="menu-burger__list-item">
-            <Account />
+            <Account onClick={handleClickLinck} />
           </li>
         </ul>
       </div>
