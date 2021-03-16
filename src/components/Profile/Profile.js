@@ -48,7 +48,7 @@ const Profile = ({
   };
   return (
     <div className="profile">
-      <h4 className="profile__title">Привет, Виталий!</h4>
+      <h4 className="profile__title">{`Привет, ${user.name}`}</h4>
       <form onSubmit={handleSubmit} noValidate className="profile__form">
         <label
           htmlFor="name"
