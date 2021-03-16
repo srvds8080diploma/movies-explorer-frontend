@@ -132,10 +132,44 @@ const App = ({ location, history }) => {
       let movies;
       if (location.pathname === '/movies') {
         movies = JSON.parse(localStorage.getItem('movies'));
+        if (movies) {
+          searchMovies(movies, value)
+            .then((res) => {
+              if (res) {
+                setTimeout(() => {
+                  setIsLoading(false);
+                }, 1000);
+                setFoundMovies(transformArray(res));
+              }
+              return console.log({ message: 'ничего не найдено' });
+            })
+            .catch((err) => {
+              console.log(err);
+              setTimeout(() => {
+                setIsLoading(false);
+              }, 1000);
+            });
+          return;
+        }
       } else if (location.pathname === '/saved-movies') {
         movies = JSON.parse(localStorage.getItem('savedMovies'));
         if (movies) {
-          setSavedMovies(transformArray(movies));
+          searchMovies(movies, value)
+            .then((res) => {
+              if (res) {
+                setTimeout(() => {
+                  setIsLoading(false);
+                }, 1000);
+                return (setSavedMovies(transformArray(res)));
+              }
+              return console.log({ message: 'ничего не найдено' });
+            })
+            .catch((err) => {
+              console.log(err);
+              setTimeout(() => {
+                setIsLoading(false);
+              }, 1000);
+            });
         }
       }
       if (movies) {
@@ -145,9 +179,7 @@ const App = ({ location, history }) => {
               setTimeout(() => {
                 setIsLoading(false);
               }, 1000);
-              return ((location.pathname === '/movies')
-                ? (setFoundMovies(transformArray(res)))
-                : (setSavedMovies(transformArray(res))));
+              return (setFoundMovies(transformArray(res)));
             }
             return console.log({ message: 'ничего не найдено' });
           })
@@ -211,7 +243,7 @@ const App = ({ location, history }) => {
       .catch((err) => console.log(err));
     MainApi.getCards()
       .then((res) => {
-        localStorage.setItem('savedMomies', JSON.stringify(res));
+        localStorage.setItem('savedMovies', JSON.stringify(res));
         return setSavedMovies(res);
       })
       .catch((err) => console.log(err));
