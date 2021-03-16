@@ -1,0 +1,60 @@
+.not-found {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #202020;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.not-found__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.not-found__value {
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 140px;
+  line-height: 1.1;
+  text-align: center;
+  color: #4285F4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.not-found__value::after {
+  content: 'Страница не найдена';
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #4285F4;
+}
+.not-found__back {
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #4285F4;
+  background-color: transparent;
+  outline: none;
+  padding: 0;
+  margin-top: 184px;
+  border: none;
+  cursor: pointer;
+}
+@media screen and (max-width: 767px) {
+  .not-found__back {
+    margin-top: 284px;
+  }
+}

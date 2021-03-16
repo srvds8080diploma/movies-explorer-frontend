@@ -1,0 +1,13 @@
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #5594FE;
+  background-image: url('../../images/header__logo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  outline: none;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,17 @@
+.links {
+  align-self: center;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 16px 0 0;
+}
+.links__message {
+  color: #8b8b8b;
+}
+.links__message-link {
+  margin-left: 6px;
+  color:#4285F4;
+  text-decoration: underline;
+}
