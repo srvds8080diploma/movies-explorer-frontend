@@ -8,7 +8,7 @@ const Profile = ({
   titleSubmit, titleLogoutButton, onSubmit, onLogout,
 }) => {
   const user = useContext(userContext);
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(true);
 
   const [{
     email, emailValid, name, nameValid, errors,
