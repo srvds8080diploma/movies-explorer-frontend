@@ -12,8 +12,11 @@ const Account = ({ onClick }) => (
   </div>
 );
 
+Account.defaultProps = {
+  onClick: null,
+};
 Account.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default Account;
