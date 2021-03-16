@@ -134,7 +134,9 @@ const App = ({ location, history }) => {
         movies = JSON.parse(localStorage.getItem('movies'));
       } else if (location.pathname === '/saved-movies') {
         movies = JSON.parse(localStorage.getItem('savedMovies'));
-        setSavedMovies(transformArray(movies));
+        if (movies) {
+          setSavedMovies(transformArray(movies));
+        }
       }
       if (movies) {
         searchMovies(movies, value)
@@ -208,7 +210,10 @@ const App = ({ location, history }) => {
       .then((res) => localStorage.setItem('movies', JSON.stringify(res)))
       .catch((err) => console.log(err));
     MainApi.getCards()
-      .then((res) => localStorage.setItem('savedMomies', JSON.stringify(res)))
+      .then((res) => {
+        localStorage.setItem('savedMomies', JSON.stringify(res));
+        return setSavedMovies(res);
+      })
       .catch((err) => console.log(err));
   }, []);
   useLayoutEffect(() => {
