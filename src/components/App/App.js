@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './App.css';
+import UserContext from '../../context/currentUser';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -24,6 +26,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import ArrayLinks from '../../utils/constants';
 
 const App = ({ location, history }) => {
+  const [currentUserContext, setCurrentUserContext] = useState({});
   const [valueButton, setValueButton] = useState(false);
   const [valueMenuBurger, setValueMenuBurger] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -37,7 +40,7 @@ const App = ({ location, history }) => {
   };
 
   return (
-    <>
+    <UserContext.Provider value={currentUserContext}>
       <MenuBurger
         classMenuBurgerValue={valueMenuBurger}
       />
