@@ -32,6 +32,7 @@ const App = ({ location, history }) => {
   const [currentUserContext, setCurrentUserContext] = useState({});
   const [width, setWith] = useState(window.innerWidth);
   const [valueButton, setValueButton] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [valueMenuBurger, setValueMenuBurger] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isShort, setIsShort] = useState(false);
@@ -120,6 +121,7 @@ const App = ({ location, history }) => {
     setIsShort(value);
   };
   const handleSearch = (value) => {
+    setIsLoading(true);
     let movies;
     if (location.pathname === '/movies') {
       movies = JSON.parse(localStorage.getItem('movies'));
@@ -129,23 +131,38 @@ const App = ({ location, history }) => {
     if (!movies) {
       MoviesApi.getData()
         .then((newMovies) => localStorage.setItem('movies', JSON.stringify(newMovies)))
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 1000);
+        });
       return;
     }
     if (value) {
       searchMovies(movies, value)
         .then((res) => {
           if (res) {
+            setTimeout(() => {
+              setIsLoading(false);
+            }, 1000);
             return ((location.pathname === '/movies')
-              ? setFoundMovies(transformArray(res))
-              : setSavedMovies(transformArray(res)));
+              ? (setFoundMovies(transformArray(res)))
+              : (setSavedMovies(transformArray(res))));
           }
           return console.log({ message: 'ничего не найдено' });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 1000);
+        });
     } else if (!value) {
       console.log({ message: 'запрос не может быть пустым' });
-      setFoundMovies(transformArray(movies));
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     }
   };
   const handleLike = (card, isLiked) => {
@@ -234,6 +251,7 @@ const App = ({ location, history }) => {
             onLike={handleLike}
             width={width}
             isShort={isShort}
+            isLoading={isLoading}
           >
             <SearchForm
               onCheck={handleCheckShort}
