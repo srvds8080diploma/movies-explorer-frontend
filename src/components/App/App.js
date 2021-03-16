@@ -128,49 +128,40 @@ const App = ({ location, history }) => {
 
   const handleSearch = (value) => {
     setIsLoading(true);
-    let movies;
-    if (location.pathname === '/movies') {
-      movies = JSON.parse(localStorage.getItem('movies'));
-    } else if (location.pathname === '/saved-movies') {
-      movies = JSON.parse(localStorage.getItem('savedMovies'));
-      setSavedMovies(transformArray(movies));
-    }
-    if (!movies) {
-      MoviesApi.getData()
-        .then((newMovies) => localStorage.setItem('movies', JSON.stringify(newMovies)))
-        .catch((err) => {
-          console.log(err);
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 1000);
-        });
-      return;
-    }
     if (value) {
-      searchMovies(movies, value)
-        .then((res) => {
-          if (res) {
+      let movies;
+      if (location.pathname === '/movies') {
+        movies = JSON.parse(localStorage.getItem('movies'));
+      } else if (location.pathname === '/saved-movies') {
+        movies = JSON.parse(localStorage.getItem('savedMovies'));
+        setSavedMovies(transformArray(movies));
+      }
+      if (movies) {
+        searchMovies(movies, value)
+          .then((res) => {
+            if (res) {
+              setTimeout(() => {
+                setIsLoading(false);
+              }, 1000);
+              return ((location.pathname === '/movies')
+                ? (setFoundMovies(transformArray(res)))
+                : (setSavedMovies(transformArray(res))));
+            }
+            return console.log({ message: 'ничего не найдено' });
+          })
+          .catch((err) => {
+            console.log(err);
             setTimeout(() => {
               setIsLoading(false);
             }, 1000);
-            return ((location.pathname === '/movies')
-              ? (setFoundMovies(transformArray(res)))
-              : (setSavedMovies(transformArray(res))));
-          }
-          return console.log({ message: 'ничего не найдено' });
-        })
-        .catch((err) => {
-          console.log(err);
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 1000);
-        });
-    } else if (!value) {
-      console.log({ message: 'запрос не может быть пустым' });
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
+          });
+        return;
+      }
     }
+    console.log({ message: 'запрос не может быть пустым' });
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   };
   const handleLike = (card, isLiked) => {
     if (isLiked) {
@@ -213,6 +204,9 @@ const App = ({ location, history }) => {
     }
   }, []);
   useEffect(() => {
+    MoviesApi.getData()
+      .then((res) => localStorage.setItem('movies', JSON.stringify(res)))
+      .catch((err) => console.log(err));
     MainApi.getCards()
       .then((res) => localStorage.setItem('savedMomies', JSON.stringify(res)))
       .catch((err) => console.log(err));
