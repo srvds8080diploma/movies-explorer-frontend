@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ToggleCheckbox from '../ToggleCheckbox/ToggleCheckbox';
 import './SearchForm.css';
 
-const SearchForm = ({ onSubmit }) => {
+const SearchForm = ({ onSubmit, onCheck }) => {
   const [formValue, setFormValue] = useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,12 +23,13 @@ const SearchForm = ({ onSubmit }) => {
         onChange={handleOnChange}
       />
       <button type="submit" className="search-form__button">Найти</button>
-      <ToggleCheckbox />
+      <ToggleCheckbox onCheck={onCheck} />
     </form>
   );
 };
 
 SearchForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  onCheck: PropTypes.func.isRequired,
 };
 export default SearchForm;
