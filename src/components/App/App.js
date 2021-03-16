@@ -87,10 +87,26 @@ const App = ({ location, history }) => {
           .includes(valueLowerCase)))));
   };
   const transformArray = (array) => array.map((card) => {
-    if (!card.image) {
-      console.log({ message: `неверные данные ${card.nameRU}` });
-      return {
-        movieId: 101,
+    if (location.pathname === '/movies') {
+      if (!card.image) {
+        console.log({ message: `неверные данные ${card.nameRU}` });
+        const transformedCards = {
+          movieId: 101,
+          nameRU: card.nameRU,
+          nameEN: card.nameEN,
+          country: card.country,
+          description: card.description,
+          director: card.director,
+          year: card.year,
+          duration: card.duration,
+          trailer: card.trailerLink,
+          thumbnail: 'https://api.nomoreparties.co/uploads/thumbnail_zagruzhennoe_53d33dc9df.jpeg',
+          image: 'https://api.nomoreparties.co/uploads/thumbnail_zagruzhennoe_53d33dc9df.jpeg',
+        };
+        return transformedCards;
+      }
+      const transformedCards = {
+        movieId: card.id,
         nameRU: card.nameRU,
         nameEN: card.nameEN,
         country: card.country,
@@ -99,34 +115,25 @@ const App = ({ location, history }) => {
         year: card.year,
         duration: card.duration,
         trailer: card.trailerLink,
-        thumbnail: 'https://api.nomoreparties.co/uploads/thumbnail_zagruzhennoe_53d33dc9df.jpeg',
-        image: 'https://api.nomoreparties.co/uploads/thumbnail_zagruzhennoe_53d33dc9df.jpeg',
+        thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
+        image: `https://api.nomoreparties.co${card.image.url}`,
       };
+      return transformedCards;
     }
-    return {
-      movieId: card.id,
-      nameRU: card.nameRU,
-      nameEN: card.nameEN,
-      country: card.country,
-      description: card.description,
-      director: card.director,
-      year: card.year,
-      duration: card.duration,
-      trailer: card.trailerLink,
-      thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
-      image: `https://api.nomoreparties.co${card.image.url}`,
-    };
+    return card;
   });
   const handleCheckShort = (value) => {
     setIsShort(value);
   };
+
   const handleSearch = (value) => {
     setIsLoading(true);
     let movies;
     if (location.pathname === '/movies') {
       movies = JSON.parse(localStorage.getItem('movies'));
     } else if (location.pathname === '/saved-movies') {
-      movies = savedMovies;
+      movies = JSON.parse(localStorage.getItem('savedMovies'));
+      setSavedMovies(transformArray(movies));
     }
     if (!movies) {
       MoviesApi.getData()
@@ -166,7 +173,6 @@ const App = ({ location, history }) => {
     }
   };
   const handleLike = (card, isLiked) => {
-    console.log(card.movieId);
     if (isLiked) {
       return MainApi.deleteCard((savedMovies.find((item) => item.movieId === card.movieId))._id)
         .then(() => {
@@ -208,7 +214,7 @@ const App = ({ location, history }) => {
   }, []);
   useEffect(() => {
     MainApi.getCards()
-      .then((res) => setSavedMovies(res))
+      .then((res) => localStorage.setItem('savedMomies', JSON.stringify(res)))
       .catch((err) => console.log(err));
   }, []);
   useLayoutEffect(() => {
@@ -275,6 +281,7 @@ const App = ({ location, history }) => {
             onLike={handleLike}
             width={width}
             isShort={isShort}
+            isLoading={isLoading}
           >
             <SearchForm
               onCheck={handleCheckShort}
