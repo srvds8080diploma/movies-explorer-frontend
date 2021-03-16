@@ -1,19 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 
-const Movies = ({ arrayFilms }) => (
+const Movies = ({
+  arrayFilms, children, onLike, savedMovies,
+}) => (
   <div className="movies">
     <div className="movies__content">
-      <SearchForm />
-      <MoviesCardList arrayFilms={arrayFilms} />
+      { children }
+      <MoviesCardList
+        onLike={onLike}
+        arrayFilms={arrayFilms}
+        savedMovies={savedMovies}
+      />
     </div>
   </div>
 );
 
-Movies.propTypes = {
-  arrayFilms: PropTypes.arrayOf(PropTypes.string).isRequired,
+Movies.defaultProps = {
+  arrayFilms: [],
+  savedMovies: [],
 };
+Movies.propTypes = {
+  arrayFilms: PropTypes.arrayOf(PropTypes.object),
+  savedMovies: PropTypes.arrayOf(PropTypes.object),
+  children: PropTypes.node.isRequired,
+  onLike: PropTypes.func.isRequired,
+};
+
 export default Movies;
