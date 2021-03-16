@@ -59,23 +59,42 @@ const App = ({ location, history }) => {
             )}
         </Header>
         <Switch>
+          <ProtectedRoute
+            path="/movies"
+            component={Movies}
+            loggedIn={isLoggedIn}
+            arrayFilms={foundMovies}
+            savedMovies={savedMovies}
+            onLike={handleLike}
+          >
+            <SearchForm onSubmit={handleSearch} />
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/profile"
+            component={Profile}
+            onLogout={handleLogout}
+            onSubmit={handleSetUserData}
+            loggedIn={isLoggedIn}
+            arrayFilms={ArrayLinks}
+          />
+          <ProtectedRoute
+            path="/saved-movies"
+            component={SavedMovies}
+            onLogout={handleLogout}
+            loggedIn={isLoggedIn}
+            arrayFilms={savedMovies}
+            onLike={handleLike}
+          >
+            <SearchForm onSubmit={handleSearch} />
+          </ProtectedRoute>
           <Route exact path="/">
             <Main />
           </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
           <Route path="/signup">
-            <Register />
+            <Register onSubmit={handleRegister} />
           </Route>
           <Route path="/signin">
-            <Login handleAction={handleLogin} />
-          </Route>
-          <Route path="/movies">
-            <Movies arrayFilms={ArrayLinks} />
-          </Route>
-          <Route path="/saved-movies">
-            <SavedMovies arrayFilms={ArrayLinks} />
+            <Login onSubmit={handleLogin} />
           </Route>
           <Route path="/*">
             <NotFound history={history} />
@@ -83,7 +102,7 @@ const App = ({ location, history }) => {
         </Switch>
         <Footer location={location} />
       </div>
-    </>
+    </UserContext.Provider>
   );
 };
 
