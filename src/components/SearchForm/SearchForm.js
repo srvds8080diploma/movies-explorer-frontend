@@ -4,25 +4,53 @@ import ToggleCheckbox from '../ToggleCheckbox/ToggleCheckbox';
 import './SearchForm.css';
 
 const SearchForm = ({ onSubmit, onCheck }) => {
-  const [formValue, setFormValue] = useState(null);
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const [{
+    name, errors,
+  }, setFormValues] = useState({
+    name: '',
+    errors: {
+      name: '',
+    },
+  });
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formValue);
+    onSubmit(name);
   };
   const handleOnChange = (e) => {
-    setFormValue(e.target.value);
+    switch (e.target.name) {
+      case e.target.name:
+        setFormValues((prevState) => ({
+          ...prevState,
+          [e.target.name]: e.target.value,
+        }));
+        errors[e.target.name] = e.target.validationMessage;
+        break;
+      default:
+        break;
+    }
+    setIsFormValid(Array.from(e.target.form).every((element) => element.validity.valid));
   };
   return (
     <form onSubmit={handleSubmit} noValidate className="search-form">
       <input
         required
+        name="name"
         type="search"
         placeholder="Фильм"
         maxLength="100"
         className="search-form__input"
         onChange={handleOnChange}
       />
-      <button type="submit" className="search-form__button">Найти</button>
+      <span className="search-form__error">{errors.name}</span>
+      <button
+        disabled={!isFormValid}
+        type="submit"
+        className={`search-form__button ${!isFormValid && 'search-form__button_disable'}`}
+      >
+        Найти
+      </button>
       <ToggleCheckbox onCheck={onCheck} />
     </form>
   );

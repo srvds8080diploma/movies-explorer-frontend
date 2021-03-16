@@ -32,6 +32,16 @@
 .search-form__input::-webkit-search-cancel-button {
   display: none;
 }
+.search-form__error {
+  position: absolute;
+  font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1;
+  top: 100%;
+  left: 40%;
+}
 .search-form__button {
   min-width: 100px;
   height: 52px;
@@ -48,6 +58,10 @@
   margin: 0;
   border: none;
   cursor: pointer;
+}
+.search-form__button_disable {
+  background-color: #424242;
+  cursor: default;
 }
 @media screen and (max-width: 767px) {
   .search-form {
