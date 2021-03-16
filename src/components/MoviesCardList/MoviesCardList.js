@@ -13,6 +13,7 @@ const MoviesCardList = ({
   const handleStillMovie = () => {
     setCount(count + row);
   };
+  const notFoundMessage = () => (<p>ничего не найдено</p>);
   const isShortMovie = () => (arrayFilms
     .slice(0, count)
     .filter((item) => item.duration <= 40)
@@ -37,12 +38,16 @@ const MoviesCardList = ({
 
   return (
     <div className="movies-list">
-      <ul className="movies-list__content">
-        {(isShort
-          ? isShortMovie()
-          : isLongMovie()
-        )}
-      </ul>
+      {(arrayFilms.length >= 1)
+        ? (
+          <ul className="movies-list__content">
+            {(isShort
+              ? isShortMovie()
+              : isLongMovie()
+            )}
+          </ul>
+        )
+        : notFoundMessage()}
       {((arrayFilms.length > 0) && (arrayFilms.length > count)) && <ButtonStill onClick={handleStillMovie} title="Еще" />}
     </div>
   );
