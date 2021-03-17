@@ -73,7 +73,7 @@
   display: inline;
 }
 .profile__input::placeholder {
-  color: #ffffff;
+  color: #909090;
   text-align: end;
   font-family: Inter, Helvetica, Arial, Ubuntu, sans-serif;
   font-style: normal;

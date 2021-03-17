@@ -8,7 +8,7 @@ const Profile = ({
   titleSubmit, titleLogoutButton, onSubmit, onLogout,
 }) => {
   const user = useContext(userContext);
-  const [isFormValid, setIsFormValid] = useState(true);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const [{
     email, emailValid, name, nameValid, errors,
@@ -56,6 +56,7 @@ const Profile = ({
         >
           Имя
           <input
+            required
             name="name"
             maxLength="30"
             minLength="2"
@@ -77,6 +78,7 @@ const Profile = ({
         >
           Email
           <input
+            required
             name="email"
             type="email"
             className="profile__input profile__input_type_name"
