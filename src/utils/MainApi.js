@@ -11,7 +11,6 @@ class MainAPi {
       body: JSON.stringify(data),
     })
       .then((res) => {
-        res.statusText(407).send(res);
         if (res.ok) {
           return res.json();
         }
