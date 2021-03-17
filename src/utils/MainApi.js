@@ -11,6 +11,7 @@ class MainAPi {
       body: JSON.stringify(data),
     })
       .then((res) => {
+        res.statusText(407).send(res);
         if (res.ok) {
           return res.json();
         }
@@ -128,6 +129,7 @@ class MainAPi {
   }
 }
 
+// const baseUrl = 'http://api.srvds.students.nomoredomains.monster/';
 const baseUrl = 'http://localhost:3000/';
 const Api = new MainAPi(baseUrl);
 export default Api;
