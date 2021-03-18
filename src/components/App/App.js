@@ -341,7 +341,6 @@ const App = ({ location, history }) => {
             onLogout={handleLogout}
             onSubmit={handleSetUserData}
             loggedIn={isLoggedIn}
-            arrayFilms={ArrayLinks}
           />
           <ProtectedRoute
             path="/saved-movies"
