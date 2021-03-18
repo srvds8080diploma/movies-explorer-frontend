@@ -5,7 +5,7 @@ import './SavedMovies.css';
 import Preloader from '../Preloader/Preloader';
 
 const SavedMovies = ({
-  arrayFilms, children, onLike, width, isShort, isLoading,
+  arrayFilms, children, onLike, width, isLoading,
 }) => (
   <div className="movies">
     <div className="movies__content">
@@ -17,7 +17,6 @@ const SavedMovies = ({
             onLike={onLike}
             arrayFilms={arrayFilms}
             width={width}
-            isShort={isShort}
           />
         )}
     </div>
@@ -32,7 +31,6 @@ SavedMovies.propTypes = {
   arrayFilms: PropTypes.arrayOf(PropTypes.object),
   children: PropTypes.node.isRequired,
   onLike: PropTypes.func.isRequired,
-  isShort: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 export default SavedMovies;

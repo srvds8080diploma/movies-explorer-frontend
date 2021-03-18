@@ -110,56 +110,35 @@ const App = ({ location, history }) => {
         handlePopupInfo('что-то пошло не так');
       });
   };
-  const searchMovies = (movies, value) => {
-    const valueLowerCase = value.toLowerCase();
-    return new Promise(((resolve) => resolve(movies
-      .filter((item) => JSON
-        .stringify(item.nameRU)
-        .toLowerCase()
-        .includes(valueLowerCase)
-        || JSON
-          .stringify(item.nameEN)
-          .toLowerCase()
-          .includes(valueLowerCase)))));
-  };
-  const transformArray = (array) => array.map((card) => {
-    if (location.pathname === '/movies') {
-      if (!card.image) {
-        console.log({ message: `неверные данные ${card.nameRU}` });
-        const transformedCards = {
-          movieId: 101,
-          nameRU: card.nameRU,
-          nameEN: card.nameEN,
-          country: card.country,
-          description: card.description,
-          director: card.director,
-          year: card.year,
-          duration: card.duration,
-          trailer: card.trailerLink,
-          thumbnail: 'https://api.nomoreparties.co/uploads/thumbnail_zagruzhennoe_53d33dc9df.jpeg',
-          image: 'https://api.nomoreparties.co/uploads/thumbnail_zagruzhennoe_53d33dc9df.jpeg',
-        };
-        return transformedCards;
-      }
-      const transformedCards = {
-        movieId: card.id,
-        nameRU: card.nameRU,
-        nameEN: card.nameEN,
-        country: card.country,
-        description: card.description,
-        director: card.director,
-        year: card.year,
-        duration: card.duration,
-        trailer: card.trailerLink,
-        thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
-        image: `https://api.nomoreparties.co${card.image.url}`,
-      };
-      return transformedCards;
-    }
-    return card;
-  });
   const handleCheckShort = (value) => {
     setIsShort(value);
+  };
+  const transformArray = (array) => array.map((card) => {
+    const { url } = card.image
+      ? card.image
+      : 'https://api.nomoreparties.co/uploads/zagruzhennoe_1_fd5faff237.jpeg';
+    const transformedCard = {
+      image: `https://api.nomoreparties.co${url}`,
+      movieId: card.id,
+      nameRU: card.nameRU,
+      nameEN: card.nameEN,
+      country: card.country,
+      description: card.description,
+      director: card.director,
+      year: card.director,
+      duration: card.duration,
+      trailer: card.trailerLink,
+      thumbnail: `https://api.nomoreparties.co${url}`,
+    };
+    return transformedCard;
+  });
+  const searchMovies = (movies, value) => {
+    const list = movies.filter((item) => JSON
+      .stringify(item.nameRU)
+      .toLowerCase()
+      .includes(value.toLowerCase()));
+    const shortList = list.filter((item) => item.duration <= ShortDurationValue);
+    return new Promise((resolve) => resolve({ list, shortList }));
   };
   const handleSearch = (value) => {
     setIsLoading(true);
@@ -169,14 +148,21 @@ const App = ({ location, history }) => {
         movies = JSON.parse(localStorage.getItem('movies'));
         if (movies) {
           searchMovies(movies, value)
-            .then((res) => {
-              if (res) {
-                setTimeout(() => {
-                  setIsLoading(false);
-                }, 1000);
-                setFoundMovies(transformArray(res));
+            .then(({ list, shortList }) => {
+              switch (true) {
+                case isShort:
+                  handlePopupInfo(`найдено фильмов: ${shortList.length}`);
+                  setFoundMovies(transformArray(shortList));
+                  break;
+                case !isShort:
+                  handlePopupInfo(`найдено фильмов: ${list.length}`);
+                  setFoundMovies(transformArray(list));
+                  break;
+                default: handlePopupInfo('По запросу ничего не найдено');
               }
-              return console.log({ message: 'ничего не найдено' });
+              return setTimeout(() => {
+                setIsLoading(false);
+              }, 1000);
             })
             .catch(() => {
               handlePopupInfo('что-то пошло не так');
@@ -190,14 +176,21 @@ const App = ({ location, history }) => {
         movies = JSON.parse(localStorage.getItem('savedMovies'));
         if (movies) {
           searchMovies(movies, value)
-            .then((res) => {
-              if (res) {
-                setTimeout(() => {
-                  setIsLoading(false);
-                }, 1000);
-                return (setSavedMovies(transformArray(res)));
+            .then(({ list, shortList }) => {
+              switch (true) {
+                case isShort:
+                  handlePopupInfo(`найдено фильмов: ${shortList.length}`);
+                  setSavedMovies(shortList);
+                  break;
+                case !isShort:
+                  handlePopupInfo(`найдено фильмов: ${list.length}`);
+                  setSavedMovies(list);
+                  break;
+                default: handlePopupInfo('По запросу ничего не найдено');
               }
-              return console.log({ message: 'ничего не найдено' });
+              return setTimeout(() => {
+                setIsLoading(false);
+              }, 1000);
             })
             .catch((err) => {
               handlePopupInfo(`что-то пошло не так ${err.statusText}`);
@@ -209,14 +202,21 @@ const App = ({ location, history }) => {
       }
       if (movies) {
         searchMovies(movies, value)
-          .then((res) => {
-            if (res) {
-              setTimeout(() => {
-                setIsLoading(false);
-              }, 1000);
-              return (setFoundMovies(transformArray(res)));
+          .then(({ list, shortList }) => {
+            switch (true) {
+              case isShort:
+                handlePopupInfo(`найдено фильмов: ${shortList.length}`);
+                setSavedMovies(shortList);
+                break;
+              case !isShort:
+                handlePopupInfo(`найдено фильмов: ${list.length}`);
+                setSavedMovies(list);
+                break;
+              default: handlePopupInfo('По запросу ничего не найдено');
             }
-            return console.log({ message: 'ничего не найдено' });
+            return setTimeout(() => {
+              setIsLoading(false);
+            }, 1000);
           })
           .catch(() => {
             handlePopupInfo('что-то пошло не так');

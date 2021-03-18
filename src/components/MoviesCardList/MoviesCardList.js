@@ -3,29 +3,17 @@ import PropTypes from 'prop-types';
 import ButtonStill from '../ButtonStill/ButtonStill';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
-import initialCount from '../../utils/constants';
+import { initialCount } from '../../utils/constants';
 
 const MoviesCardList = ({
-  arrayFilms, onLike, savedMovies, width, isShort,
+  arrayFilms, onLike, savedMovies, width,
 }) => {
-  const row = initialCount(width.width);
+  const row = initialCount(width);
   const [count, setCount] = useState(row);
   const handleStillMovie = () => {
     setCount(count + row);
   };
-  const notFoundMessage = () => (<p>ничего не найдено</p>);
-  const isShortMovie = () => (arrayFilms
-    .slice(0, count)
-    .filter((item) => item.duration <= 40)
-    .map((item) => (
-      <MoviesCard
-        key={item.movieId}
-        card={item}
-        onLike={onLike}
-        savedMovies={savedMovies}
-      />
-    )));
-  const isLongMovie = () => (arrayFilms
+  const isMovies = () => (arrayFilms
     .slice(0, count)
     .map((item) => (
       <MoviesCard
@@ -38,16 +26,9 @@ const MoviesCardList = ({
 
   return (
     <div className="movies-list">
-      {(arrayFilms.length >= 1)
-        ? (
-          <ul className="movies-list__content">
-            {(isShort
-              ? isShortMovie()
-              : isLongMovie()
-            )}
-          </ul>
-        )
-        : notFoundMessage()}
+      <ul className="movies-list__content">
+        {isMovies()}
+      </ul>
       {((arrayFilms.length > 0) && (arrayFilms.length > count)) && <ButtonStill onClick={handleStillMovie} title="Еще" />}
     </div>
   );
@@ -62,7 +43,6 @@ MoviesCardList.propTypes = {
   arrayFilms: PropTypes.arrayOf(PropTypes.object),
   savedMovies: PropTypes.arrayOf(PropTypes.object),
   onLike: PropTypes.func.isRequired,
-  isShort: PropTypes.bool.isRequired,
 };
 
 export default MoviesCardList;
