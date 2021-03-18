@@ -1,4 +1,8 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useLayoutEffect,
+} from 'react';
 import {
   Switch,
   Route,
@@ -27,6 +31,7 @@ import ArrayLinks from '../../utils/constants';
 import MoviesApi from '../../utils/MoviesApi';
 import MainApi from '../../utils/MainApi';
 import SearchForm from '../SearchForm/SearchForm';
+import InfoPopup from '../InfoPopup/InfoPopup';
 
 const App = ({ location, history }) => {
   const [currentUserContext, setCurrentUserContext] = useState({});
@@ -38,23 +43,49 @@ const App = ({ location, history }) => {
   const [isShort, setIsShort] = useState(false);
   const [foundMovies, setFoundMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [infoValues, setInfoMessage] = useState({
+    message: '',
+    value: false,
+  });
+  const handlePopupInfo = (message) => {
+    setTimeout(() => {
+      setInfoMessage((prevState) => ({
+        ...prevState,
+        message: '',
+        value: false,
+      }));
+    }, 5000);
+    setInfoMessage((prevState) => ({
+      ...prevState,
+      message,
+      value: true,
+    }));
+  };
   const handleCloseBurger = () => {
     setValueButton(!valueButton);
     setValueMenuBurger(!valueMenuBurger);
   };
   const handleSetUserData = (data) => {
     MainApi.setUserData(data)
-      .then((res) => setCurrentUserContext((prevState) => ({
-        ...prevState,
-        name: res.name,
-        email: res.email,
-      })))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        setCurrentUserContext((prevState) => ({
+          ...prevState,
+          name: res.name,
+          email: res.email,
+        }));
+        handlePopupInfo('данные изменены');
+        return Promise.resolve();
+      })
+      .catch((err) => {
+        console.log(err);
+        handlePopupInfo(`что-то пошло не так ${err.statusText}`);
+      });
   };
   const handleLogout = () => {
     localStorage.clear();
     setIsLoggedIn(false);
     history.push('/');
+    handlePopupInfo('Вы свободны');
   };
   const handleLogin = (data) => {
     MainApi.authentication(data)
@@ -62,9 +93,13 @@ const App = ({ location, history }) => {
         setCurrentUserContext(res);
         localStorage.setItem('jwt', res.token);
         setIsLoggedIn(true);
+        handlePopupInfo('Велкам');
         return history.push('/movies');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        handlePopupInfo(`что-то пошло не так ${err.statusText}`);
+      });
   };
   const handleRegister = (data) => {
     MainApi.registration(data)
@@ -72,7 +107,10 @@ const App = ({ location, history }) => {
         setIsLoggedIn(true);
         return handleLogin({ email: data.email, password: data.password });
       })
-      .catch(() => setIsLoggedIn(false));
+      .catch((err) => {
+        setIsLoggedIn(false);
+        handlePopupInfo(`что-то пошло не так ${err.statusText}`);
+      });
   };
   const searchMovies = (movies, value) => {
     const valueLowerCase = value.toLowerCase();
@@ -125,7 +163,6 @@ const App = ({ location, history }) => {
   const handleCheckShort = (value) => {
     setIsShort(value);
   };
-
   const handleSearch = (value) => {
     setIsLoading(true);
     if (value) {
@@ -144,7 +181,7 @@ const App = ({ location, history }) => {
               return console.log({ message: 'ничего не найдено' });
             })
             .catch((err) => {
-              console.log(err);
+              handlePopupInfo(`что-то пошло не так ${err.statusText}`);
               setTimeout(() => {
                 setIsLoading(false);
               }, 1000);
@@ -165,7 +202,7 @@ const App = ({ location, history }) => {
               return console.log({ message: 'ничего не найдено' });
             })
             .catch((err) => {
-              console.log(err);
+              handlePopupInfo(`что-то пошло не так ${err.statusText}`);
               setTimeout(() => {
                 setIsLoading(false);
               }, 1000);
@@ -184,7 +221,7 @@ const App = ({ location, history }) => {
             return console.log({ message: 'ничего не найдено' });
           })
           .catch((err) => {
-            console.log(err);
+            handlePopupInfo(`что-то пошло не так ${err.statusText}`);
             setTimeout(() => {
               setIsLoading(false);
             }, 1000);
@@ -192,7 +229,7 @@ const App = ({ location, history }) => {
         return;
       }
     }
-    console.log({ message: 'запрос не может быть пустым' });
+    handlePopupInfo('запрос не может быть пустым');
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -206,13 +243,17 @@ const App = ({ location, history }) => {
           setSavedMovies(newSavedMovies);
           return setFoundMovies(newFoundMovies);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          handlePopupInfo(`что-то пошло не так ${err.statusText}`);
+        });
     }
     return MainApi.addCard(card)
       .then(({ movie }) => (
         setSavedMovies((prevState) => [movie, ...prevState])
       ))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        handlePopupInfo(`что-то пошло не так ${err.statusText}`);
+      });
   };
   const resizeWindow = () => {
     setTimeout(() => {
@@ -240,7 +281,9 @@ const App = ({ location, history }) => {
   useEffect(() => {
     MoviesApi.getData()
       .then((res) => localStorage.setItem('movies', JSON.stringify(res)))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        handlePopupInfo(`что-то пошло не так ${err.statusText}`);
+      });
     MainApi.getCards()
       .then((res) => {
         localStorage.setItem('savedMovies', JSON.stringify(res));
@@ -262,6 +305,7 @@ const App = ({ location, history }) => {
         handleClick={handleCloseBurger}
       />
       <div className="page">
+        {infoValues.value && <InfoPopup message={infoValues.message} />}
         <Header location={location}>
           {!isLoggedIn
             ? <MenuProfile />
