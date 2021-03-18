@@ -35,7 +35,7 @@ import InfoPopup from '../InfoPopup/InfoPopup';
 
 const App = ({ location, history }) => {
   const [currentUserContext, setCurrentUserContext] = useState({});
-  const [width, setWith] = useState(window.innerWidth);
+  const [size, setSize] = useState(window.innerWidth);
   const [valueButton, setValueButton] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [valueMenuBurger, setValueMenuBurger] = useState(false);
@@ -257,10 +257,7 @@ const App = ({ location, history }) => {
   };
   const resizeWindow = () => {
     setTimeout(() => {
-      setWith((prevState) => ({
-        ...prevState,
-        width: window.innerWidth,
-      }));
+      setSize(window.innerWidth);
     }, 1000);
   };
   useEffect(() => {
@@ -330,8 +327,7 @@ const App = ({ location, history }) => {
             arrayFilms={foundMovies}
             savedMovies={savedMovies}
             onLike={handleLike}
-            width={width}
-            isShort={isShort}
+            width={size}
             isLoading={isLoading}
           >
             <SearchForm
@@ -354,8 +350,7 @@ const App = ({ location, history }) => {
             loggedIn={isLoggedIn}
             arrayFilms={savedMovies}
             onLike={handleLike}
-            width={width}
-            isShort={isShort}
+            width={size}
             isLoading={isLoading}
           >
             <SearchForm

@@ -28,9 +28,7 @@ SavedMovies.defaultProps = {
   arrayFilms: [],
 };
 SavedMovies.propTypes = {
-  width: PropTypes.shape({
-    width: PropTypes.number.isRequired,
-  }).isRequired,
+  width: PropTypes.number.isRequired,
   arrayFilms: PropTypes.arrayOf(PropTypes.object),
   children: PropTypes.node.isRequired,
   onLike: PropTypes.func.isRequired,
