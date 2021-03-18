@@ -17,6 +17,7 @@ const SavedMovies = ({
             onLike={onLike}
             arrayFilms={arrayFilms}
             width={width}
+            isSaved
           />
         )}
     </div>

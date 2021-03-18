@@ -6,7 +6,7 @@ import './MoviesCardList.css';
 import { initialCount } from '../../utils/constants';
 
 const MoviesCardList = ({
-  arrayFilms, onLike, savedMovies, width,
+  arrayFilms, onLike, savedMovies, width, isSaved,
 }) => {
   const row = initialCount(width);
   const [count, setCount] = useState(row);
@@ -21,6 +21,7 @@ const MoviesCardList = ({
         card={item}
         onLike={onLike}
         savedMovies={savedMovies}
+        isSaved={isSaved}
       />
     )));
 
@@ -37,9 +38,11 @@ const MoviesCardList = ({
 MoviesCardList.defaultProps = {
   arrayFilms: [],
   savedMovies: [],
+  isSaved: false,
 };
 MoviesCardList.propTypes = {
   width: PropTypes.number.isRequired,
+  isSaved: PropTypes.bool,
   arrayFilms: PropTypes.arrayOf(PropTypes.object),
   savedMovies: PropTypes.arrayOf(PropTypes.object),
   onLike: PropTypes.func.isRequired,

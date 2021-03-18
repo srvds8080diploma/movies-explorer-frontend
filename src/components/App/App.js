@@ -237,9 +237,7 @@ const App = ({ location, history }) => {
       return MainApi.deleteCard((savedMovies.find((item) => item.movieId === card.movieId))._id)
         .then(() => {
           const newSavedMovies = savedMovies.filter((item) => card._id !== item._id);
-          const newFoundMovies = foundMovies.filter((item) => card.movieId !== item.movieId);
-          setSavedMovies(newSavedMovies);
-          return setFoundMovies(newFoundMovies);
+          return setSavedMovies(newSavedMovies);
         })
         .catch((err) => {
           handlePopupInfo(`что-то пошло не так ${err.statusText}`);

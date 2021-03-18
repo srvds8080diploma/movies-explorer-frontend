@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import './MoviesCard.css';
 import userContext from '../../context/currentUser';
 
-const MoviesCard = ({ card, onLike, savedMovies }) => {
+const MoviesCard = ({
+  card,
+  onLike,
+  savedMovies,
+  isSaved,
+}) => {
   const user = useContext(userContext);
   const {
     image, nameRU, duration, trailer, owner, movieId,
@@ -16,6 +21,7 @@ const MoviesCard = ({ card, onLike, savedMovies }) => {
   const handleLike = () => {
     onLike(card, isLiked);
   };
+  const stileButtonLike = `movies-card__button movies-card__button_type_like ${isLiked && 'movies-card__button_type_like_checked'} ${isSaved && 'movies-card__button_type_isSaved'} `;
   return (
     <li className="movies-card">
       <a className="movies__card_trailer-link" href={trailer} target="_blank" rel="noreferrer">
@@ -31,7 +37,7 @@ const MoviesCard = ({ card, onLike, savedMovies }) => {
           <button
             type="button"
             onClick={handleLike}
-            className={`movies-card__button movies-card__button_type_like ${isLiked && 'movies-card__button_type_like_checked'} `}
+            className={stileButtonLike}
           />
         </div>
         <span className="movies-card__duration">
@@ -45,6 +51,7 @@ const MoviesCard = ({ card, onLike, savedMovies }) => {
 };
 MoviesCard.defaultProps = {
   savedMovies: [],
+  isSaved: false,
 };
 MoviesCard.propTypes = {
   card: PropTypes.shape({
@@ -55,6 +62,7 @@ MoviesCard.propTypes = {
     duration: PropTypes.number,
     trailer: PropTypes.string,
   }).isRequired,
+  isSaved: PropTypes.bool,
   onLike: PropTypes.func.isRequired,
   savedMovies: PropTypes.arrayOf(PropTypes.object),
 };
