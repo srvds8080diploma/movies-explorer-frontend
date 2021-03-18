@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './App.css';
+import { ShortDurationValue } from '../../utils/constants';
 import UserContext from '../../context/currentUser';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Main from '../Main/Main';
@@ -27,7 +28,6 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import SavedMovies from '../SavedMovies/SavedMovies';
-import ArrayLinks from '../../utils/constants';
 import MoviesApi from '../../utils/MoviesApi';
 import MainApi from '../../utils/MainApi';
 import SearchForm from '../SearchForm/SearchForm';

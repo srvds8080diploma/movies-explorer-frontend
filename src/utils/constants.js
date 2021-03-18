@@ -1,4 +1,4 @@
-function initialCount(width) {
+export function initialCount(width) {
   let row;
   switch (true) {
     case width <= 480:
@@ -14,5 +14,4 @@ function initialCount(width) {
   }
   return row;
 }
-
-export default initialCount;
+export const ShortDurationValue = '40';
