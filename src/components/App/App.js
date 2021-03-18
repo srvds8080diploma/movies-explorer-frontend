@@ -55,11 +55,13 @@ const App = ({ location, history }) => {
         value: false,
       }));
     }, 5000);
-    setInfoMessage((prevState) => ({
-      ...prevState,
-      message,
-      value: true,
-    }));
+    setTimeout(() => {
+      setInfoMessage((prevState) => ({
+        ...prevState,
+        message,
+        value: true,
+      }));
+    }, 1000);
   };
   const handleCloseBurger = () => {
     setValueButton(!valueButton);
@@ -76,10 +78,7 @@ const App = ({ location, history }) => {
         handlePopupInfo('данные изменены');
         return Promise.resolve();
       })
-      .catch((err) => {
-        console.log(err);
-        handlePopupInfo(`что-то пошло не так ${err.statusText}`);
-      });
+      .catch(() => handlePopupInfo('что-то пошло не так'));
   };
   const handleLogout = () => {
     localStorage.clear();
@@ -96,9 +95,8 @@ const App = ({ location, history }) => {
         handlePopupInfo('Велкам');
         return history.push('/movies');
       })
-      .catch((err) => {
-        console.log(err);
-        handlePopupInfo(`что-то пошло не так ${err.statusText}`);
+      .catch(() => {
+        handlePopupInfo('что-то пошло не так');
       });
   };
   const handleRegister = (data) => {
@@ -107,9 +105,9 @@ const App = ({ location, history }) => {
         setIsLoggedIn(true);
         return handleLogin({ email: data.email, password: data.password });
       })
-      .catch((err) => {
+      .catch(() => {
         setIsLoggedIn(false);
-        handlePopupInfo(`что-то пошло не так ${err.statusText}`);
+        handlePopupInfo('что-то пошло не так');
       });
   };
   const searchMovies = (movies, value) => {
@@ -180,8 +178,8 @@ const App = ({ location, history }) => {
               }
               return console.log({ message: 'ничего не найдено' });
             })
-            .catch((err) => {
-              handlePopupInfo(`что-то пошло не так ${err.statusText}`);
+            .catch(() => {
+              handlePopupInfo('что-то пошло не так');
               setTimeout(() => {
                 setIsLoading(false);
               }, 1000);
@@ -220,8 +218,8 @@ const App = ({ location, history }) => {
             }
             return console.log({ message: 'ничего не найдено' });
           })
-          .catch((err) => {
-            handlePopupInfo(`что-то пошло не так ${err.statusText}`);
+          .catch(() => {
+            handlePopupInfo('что-то пошло не так');
             setTimeout(() => {
               setIsLoading(false);
             }, 1000);
