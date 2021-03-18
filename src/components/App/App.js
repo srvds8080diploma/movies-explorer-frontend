@@ -236,7 +236,7 @@ const App = ({ location, history }) => {
     if (isLiked) {
       return MainApi.deleteCard((savedMovies.find((item) => item.movieId === card.movieId))._id)
         .then(() => {
-          const newSavedMovies = savedMovies.filter((item) => card._id !== item._id);
+          const newSavedMovies = savedMovies.filter((item) => card.movieId !== item.movieId);
           return setSavedMovies(newSavedMovies);
         })
         .catch((err) => {
