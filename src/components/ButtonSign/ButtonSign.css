@@ -16,3 +16,8 @@
   font-size: 14px;
   line-height: 1.2;
 }
+.register__button-submit_type_disable {
+  background-color: #424242;
+  opacity: 0.5;
+  cursor: inherit;
+}

@@ -1,20 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import SearchForm from '../SearchForm/SearchForm';
 import './SavedMovies.css';
+import Preloader from '../Preloader/Preloader';
 
-const SavedMovies = ({ arrayFilms }) => (
+const SavedMovies = ({
+  arrayFilms, children, onLike, width, isLoading,
+}) => (
   <div className="movies">
     <div className="movies__content">
-      <SearchForm />
-      <MoviesCardList arrayFilms={arrayFilms} />
+      { children }
+      {isLoading
+        ? <Preloader />
+        : (
+          <MoviesCardList
+            onLike={onLike}
+            arrayFilms={arrayFilms}
+            width={width}
+            isSaved
+          />
+        )}
     </div>
   </div>
 );
 
-SavedMovies.propTypes = {
-  arrayFilms: PropTypes.arrayOf(PropTypes.string).isRequired,
+SavedMovies.defaultProps = {
+  arrayFilms: [],
 };
-
+SavedMovies.propTypes = {
+  width: PropTypes.number.isRequired,
+  arrayFilms: PropTypes.arrayOf(PropTypes.object),
+  children: PropTypes.node.isRequired,
+  onLike: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
 export default SavedMovies;

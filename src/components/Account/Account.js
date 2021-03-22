@@ -1,14 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './Account.css';
 
-const Account = () => (
+const Account = ({ onClick }) => (
   <div className="account">
-    <Link to="/profile" className="account__link">
+    <Link onClick={onClick} to="/profile" className="account__link">
       Аккаунт
     </Link>
-    <Link to="/profile" className="account__image" />
+    <Link onClick={onClick} to="/profile" className="account__image" />
   </div>
 );
+
+Account.defaultProps = {
+  onClick: null,
+};
+Account.propTypes = {
+  onClick: PropTypes.func,
+};
 
 export default Account;

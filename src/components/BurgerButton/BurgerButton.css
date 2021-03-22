@@ -66,6 +66,9 @@
   .burger-button__base-line::before {
     height: 2.5px;
   }
+  .burger-button__base-line_active {
+    height: 0;
+  }
   .burger-button__base-line_active::before {
     transform: translate(0, -2px) rotate(-45deg);
   }
